@@ -27,7 +27,7 @@ public class SceneTransitionManager : MonoBehaviour
     /// </summary>
     public void SetLastPosition(Transform triggerTransform, string sceneName, bool isVertical = false)
     {
-        Vector3 offset = isVertical ? Vector3.down * 0.01f : Vector3.right * 0.01f;
+        Vector3 offset = isVertical ? Vector3.down * 0.05f : Vector3.right * 0.01f;
         lastPositions[sceneName] = triggerTransform.position + offset;
         lastScene = sceneName;
     }
