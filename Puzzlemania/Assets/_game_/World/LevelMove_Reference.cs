@@ -17,6 +17,8 @@ public class LevelMove_Reference : MonoBehaviour
             PlayerPrefs.SetFloat("SpawnX", spawnPosition.x);
             PlayerPrefs.SetFloat("SpawnY", spawnPosition.y);
             PlayerPrefs.Save();
+            PlayerPrefs.SetInt("UseSavedSpawn", 1);
+
 
             // Load the new scene
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
