@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Windows;
 
 [SelectionBase]
 public class Player_Controller : MonoBehaviour
@@ -15,10 +16,12 @@ public class Player_Controller : MonoBehaviour
 
     #region Internal Data
     private Vector2 _moveDir = Vector2.zero;
+    public Animator anim;
+    private bool moving;
     #endregion
 
     #region Tick
-    
+
 
     private void Start()
     {
@@ -31,6 +34,7 @@ public class Player_Controller : MonoBehaviour
     private void Update()
     {
         GatherInput();
+        Animate();
     }
 
     private void FixedUpdate()
@@ -42,8 +46,8 @@ public class Player_Controller : MonoBehaviour
     #region Input Logic
     private void GatherInput()
     {
-        _moveDir.x = Input.GetAxisRaw("Horizontal");
-        _moveDir.y = Input.GetAxisRaw("Vertical");
+        _moveDir.x = UnityEngine.Input.GetAxisRaw("Horizontal");
+        _moveDir.y = UnityEngine.Input.GetAxisRaw("Vertical");
     }
     #endregion
 
@@ -51,6 +55,26 @@ public class Player_Controller : MonoBehaviour
     private void MovementUpdate()
     {
         _rb.linearVelocity = _moveDir * _moveSpeed * Time.fixedDeltaTime; 
+    }
+
+    private void Animate()
+    {
+        if (_moveDir.magnitude > 0.1f || _moveDir.magnitude < -0.1f)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+
+        if (moving)
+        {
+            anim.SetFloat("x", _moveDir.x);
+            anim.SetFloat("y", _moveDir.y);
+        }
+
+        anim.SetBool("Moving", moving);
     }
     #endregion
 }
