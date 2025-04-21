@@ -14,7 +14,7 @@ public class Player_Controller : MonoBehaviour
 
     #region Internal Data
     private Vector2 _moveDir = Vector2.zero;
-    private Animator anim;
+    public Animator anim;
     private bool moving;
     #endregion
 
@@ -23,7 +23,7 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         // Cache the Animator component
-        anim = GetComponent<Animator>();
+       
 
         // Get the spawn position from PlayerPrefs after the scene loads
         //float spawnX = PlayerPrefs.GetFloat("SpawnX", 0f);  // Default to (0, 0) if not set
@@ -63,7 +63,7 @@ public class Player_Controller : MonoBehaviour
 
     private void Animate()
     {
-        if (_moveDir.magnitude > 0.1f)
+        if (_moveDir.magnitude > 0.1f || _moveDir.magnitude < -0.1f)
         {
             moving = true;
         }
