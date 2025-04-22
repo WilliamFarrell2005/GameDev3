@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI; 
 public class PlayerHealth : MonoBehaviour
 {
+    private AudioSource Death_Effect;
+    private AudioSource PlayerGetHit;
     public int maxHealth = 100;
     private int currentHealth;
 
@@ -10,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        Death_Effect = GetComponent<AudioSource>();
+        PlayerGetHit = GetComponent<AudioSource>();
 
         if (healthBar != null)
         {
@@ -20,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        PlayerGetHit.Play();
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); 
 
@@ -32,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Death_Effect.Play();
             Die();
         }
     }

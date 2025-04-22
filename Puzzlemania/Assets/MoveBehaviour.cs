@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MoveBehaviour : StateMachineBehaviour
 {
+    
     private Transform playerPos;
     public float speed;
     public float attackRange = 2f;
