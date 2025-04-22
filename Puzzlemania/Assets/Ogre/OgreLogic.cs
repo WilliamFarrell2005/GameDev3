@@ -9,7 +9,7 @@ public class OgreLogic : MonoBehaviour
     private Transform target;
     public float maxLengthOfTheRaybeam;
     private LineRenderer lineRenderer;
-    private PlayerHealth mainCharacterScript;
+    private Health script;
     public float damage;
     private bool canMove;
     private bool canAttack;
@@ -29,7 +29,7 @@ public class OgreLogic : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        mainCharacterScript = target.GetComponent<PlayerHealth>();
+        script = target.GetComponent<Health>();
         sound.mute = true;
         StartCoroutine(raybeamAttack(attackFrequency));
     }
@@ -76,7 +76,7 @@ public class OgreLogic : MonoBehaviour
                 {
                     direction = hitPoint - startPoint;
                     ray = Physics2D.Raycast(startPoint, direction.normalized, direction.magnitude);
-                    if (ray && ray.collider.CompareTag("Player"))  mainCharacterScript.TakeDamage(damage * Time.deltaTime);
+                    if (ray && ray.collider.CompareTag("Player"))  script.Damage(damage * Time.deltaTime);
                     timer += Time.deltaTime;
                     yield return null;
                 }

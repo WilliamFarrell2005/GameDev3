@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 public class HpScript : MonoBehaviour
 {
     public float hp;
+
     private void Update()
     {
         if (hp <= 0)

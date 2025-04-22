@@ -3,12 +3,14 @@
     {
         public float damage;
         public float timeDestruction;
+        private Health script;
+        
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                PlayerHealth mainCharacterScript = other.gameObject.GetComponent<PlayerHealth>();
-                mainCharacterScript.TakeDamage(damage);
+                script = other.gameObject.GetComponent<Health>();
+                script.Damage(damage);
                 Destroy(gameObject);
             }
         }

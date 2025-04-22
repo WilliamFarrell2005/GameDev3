@@ -3,7 +3,7 @@ using UnityEngine;
 public class SwordLogic : MonoBehaviour
 {
     public float damage;
-    private PlayerHealth mainCharacter;
+    private Health script;
     private Animator animator;
     private int notMoving = Animator.StringToHash("notMoving");
     private AudioSource sound;
@@ -26,8 +26,8 @@ public class SwordLogic : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            mainCharacter = other.gameObject.GetComponent<PlayerHealth>();
-            mainCharacter.TakeDamage(damage);
+            script = other.gameObject.GetComponent<Health>();
+            script.Damage(damage);
         }
     }
 

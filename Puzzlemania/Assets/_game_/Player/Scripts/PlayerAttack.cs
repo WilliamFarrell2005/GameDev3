@@ -11,7 +11,7 @@ public class Player_Attack : MonoBehaviour
 
     [SerializeField] private float meleeSpeed;
 
-    [SerializeField] private float damage;
+    [SerializeField] public float damage;
 
     
 
@@ -66,13 +66,12 @@ public class Player_Attack : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            //other.GetComponent<Enemy>().TakeDamage(damage);
-
-       
+            other.gameObject.GetComponent<HpScript>().hp -= 10;
+            Debug.Log("Enemy hit!");
        }
     }
 
