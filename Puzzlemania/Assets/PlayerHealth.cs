@@ -4,8 +4,8 @@ public class PlayerHealth : MonoBehaviour
 {
     private AudioSource Death_Effect;
     private AudioSource PlayerGetHit;
-    public int maxHealth = 100;
-    private int currentHealth;
+    public float maxHealth = 100;
+    private float currentHealth;
 
     public Slider healthBar; 
 
@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         PlayerGetHit.Play();
         currentHealth -= amount;
